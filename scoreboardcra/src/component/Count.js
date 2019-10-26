@@ -2,7 +2,7 @@ import React from "react";
 
 class Counter extends React.Component {
   incDecScore = (delta) => {
-    this.props.changeScore(this.props.id, this.props.score + delta) //인수로 id와 현재점수
+    this.props.changeScore(this.props.id, delta) //인수로 id와 현재점수
   }
 
   render() {

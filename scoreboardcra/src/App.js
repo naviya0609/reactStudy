@@ -19,8 +19,19 @@ class App extends React.Component {
       }
     })
   }
+  //immutable 원본배열 건드리지 말고 변경후 새로운 배열로 리턴
   handleChangeScore(id, delta){
-    console.log("handleChangeScore", id, delta)
+    //console.log("handleChangeScore", id, delta)
+    this.setState(prevState => {
+        //새로운배열로 copy 기존바구니에서 펼쳐서 새로운 배열 만듦.
+        const players = [ ...prevState.players ]
+        players.forEach(player => {
+          if(id === player.id){
+            player.score += delta;
+          }
+        })
+      return players;
+    })
   }
   render() {
     return (
