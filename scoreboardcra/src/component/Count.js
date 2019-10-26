@@ -3,15 +3,11 @@ import React from "react";
 class Counter extends React.Component {
   incrementScore = () => {
     console.log(this);
-    this.setState(prevState => {
-      return {score: prevState.score + 1}
-    });
+    this.props.changeScore()
   }
 
   decrementScore = () => {
-    this.setState(prevState => {
-      return {score: prevState.score - 1}
-    });
+    this.props.changeScore()
   }
 
   render() {

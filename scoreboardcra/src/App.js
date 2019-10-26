@@ -19,14 +19,20 @@ class App extends React.Component {
       }
     })
   }
+  handleChangeScore(){
+    console.log("handleChangeScore")
+  }
   render() {
     return (
       <div className="scoreboard">
         <Header title="My scoreboard" totalPlayers={this.state.players.length} />
 
         {/*Players List*/}
-        { this.state.players.map(item => <Player name={item.name} score={item.score}
-                                                 key={item.id.toString()} removePlayer={this.handleRemovePlayer}
+        { this.state.players.map(item => <Player name={item.name}
+                                                 score={item.score}
+                                                 key={item.id.toString()}
+                                                 removePlayer={this.handleRemovePlayer}
+                                                 changeScore={this.handleChangeScore.bind(this)}
                                                  id={item.id} />)
         }
       </div>
