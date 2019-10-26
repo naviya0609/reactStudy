@@ -2,6 +2,7 @@ import React from 'react';
 import './App.css';
 import {Header} from "./component/Header";
 import {Player} from "./component/Player";
+import {AddPlayerForm} from "./component/AddPlayerForm";
 
 class App extends React.Component {
   state = {
@@ -54,6 +55,7 @@ class App extends React.Component {
                                                  changeScore={this.handleChangeScore.bind(this)}
                                                  id={item.id} />)
         }
+        <AddPlayerForm/>
       </div>
     );
   }
