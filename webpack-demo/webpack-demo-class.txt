@@ -43,7 +43,12 @@ npm i -D webpack-dev-server
 npm i -D style-loader css-loader
 webpack.config.js 설정
 --------------------------------------------------------
+git remote add origin https://github.com/naviya0609/reactStudy.git
+git remote -v
+git remote add orgin master
+
 git permission denied
-git push https://<username>:<password>@github.com/<username>/<repositoryName>.git
+
+git push https://naviya0609:----!@github.com/naviya0609/reactStudy.git
 git config –-global user.name “woo nana”
 git config --global user.email "naviya0609@gmail.com"
