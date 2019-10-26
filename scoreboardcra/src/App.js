@@ -19,8 +19,8 @@ class App extends React.Component {
       }
     })
   }
-  handleChangeScore(){
-    console.log("handleChangeScore")
+  handleChangeScore(id, delta){
+    console.log("handleChangeScore", id, delta)
   }
   render() {
     return (

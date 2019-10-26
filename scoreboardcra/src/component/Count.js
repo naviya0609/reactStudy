@@ -1,21 +1,16 @@
 import React from "react";
 
 class Counter extends React.Component {
-  incrementScore = () => {
-    console.log(this);
-    this.props.changeScore()
-  }
-
-  decrementScore = () => {
-    this.props.changeScore()
+  incDecScore = (delta) => {
+    this.props.changeScore(this.props.id, this.props.score + delta) //인수로 id와 현재점수
   }
 
   render() {
     return (
       <div className="counter">
-        <button className="counter-action decrement" onClick={this.decrementScore}> - </button>
+        <button className="counter-action decrement" onClick={()=>this.incDecScore(-1)}> - </button>
         <span className="counter-score">{this.props.score}</span>
-        <button className="counter-action increment" onClick={this.incrementScore}> + </button>
+        <button className="counter-action increment" onClick={()=>this.incDecScore(1)}> + </button>
       </div>
     );
   }
