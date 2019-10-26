@@ -1,0 +1,49 @@
+자바스크립트의 모듈을 정의한 스펙 == CommonJS
+lodash 모듈은 로컬로 설치했으니 이 모듈을 가져와서 사용하겠다는 부분을 추가한다.
+모듈을 정의한 스펙이 CommonJS 스펙으로 이 스펙으로 인해 자바스크립트가 브라우저에서만
+사용되는 언어에서 가장 많이 사용되는 언어로 발전하게 되었다.
+CommonJS에서는 모듈을 정의하고 배포하는 부분이 export , 모듈을 가져오는 부분이 require 이다.
+이것은 es6로 넘어가면서 export, import로 바뀌어졌다.
+---------------------------------------------------------------------------------------------
+npm init >> npm 저장소 생성 - package.json 생성
+npm y. 기본값으로 생성
+keyword git에 올릴때 씀
+
+-dev 와 분리하면 개발환경에서만 사용하므로
+배포시 용량줄일 수 있음.
+
+--saveDev -D all same
+npm install --save-dev webpack webpack-cli
+npx webpack(default 컴파일)
+진입점 src/index.js
+dist/main.js 생성됨
+html script source main.js 삽입
+index.html same directory에 위치
+
+--------------------------------------------------------
+사용자 설정 파일로 webpack 컴파일
+webpack.config.js 설정파일
+entry / output
+npx webpack --config webpack.config.js
+package.json > script > "build" : "npx webpack --config webpack.config.js"  추가
+npm run build.로 실행
+
+만일 에러가 발생한다면 아래와 같이 링크시켜준다.
+npm link webpack
+
+--------------------------------------------------------
+webpack 모듈 번들러 모듈생성관리자 부하들 관리
+더편하게 쓸 수 있도록
+- html plugin html 자동으로 컴파일파일 import
+npm i -D html-webpack-plugin
+- hot reloading module
+npm i -D webpack-dev-server
+"start:dev": "webpack-dev-server"
+- Style-loader css-loader
+npm i -D style-loader css-loader
+webpack.config.js 설정
+--------------------------------------------------------
+git permission denied
+git push https://<username>:<password>@github.com/<username>/<repositoryName>.git
+git config –-global user.name “woo nana”
+git config --global user.email "naviya0609@gmail.com"

@@ -1,0 +1,12 @@
+body {
+  background: #ffd400;
+
+  div {
+    margin: 2rem;
+    padding: 1rem;
+    border: 1px solid red;
+    &.active {
+
+    }
+  }
+}
