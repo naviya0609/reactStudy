@@ -1,24 +1,7 @@
 import React from 'react';
 import './App.css';
 import {Header} from "./component/Header";
-import Counter from "./component/Count";
-
-const Player = (props) => {
-  console.log(props);
-  return (
-    <div className="player">
-      <span className="player-name">
-        <button className="remove-player" onClick={() => props.removePlayer(props.id)}>x</button>
-      </span>
-      <span className="player-name">
-        {props.name}
-      </span>
-      <Counter />
-    </div>
-  );
-}
-
-
+import {Player} from "./component/Player";
 
 class App extends React.Component {
   state = {
