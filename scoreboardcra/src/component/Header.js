@@ -1,16 +1,26 @@
 import React from "react";
 import {Stats} from "./Stats";
 import {Stopwatch} from "./Stopwatch";
+import PropTypes from 'prop-types';
 
-export const Header = (props) => {
-  //console.log(props);
+export const Header = ({title,players}) => {
+  // console.log(props);
+  // const {title, totalPlayers} = props; // desctruct assignment
   return (
-    <header>
-      <Stats players={props.players}/>
-      <h1>{ props.title }</h1>
-      <Stopwatch />
+    <header className="header">
+      <Stats players={players}/>
+      <h1 className="h1">{title}</h1>
+      <Stopwatch></Stopwatch>
     </header>
-  )
+  );
 }
 
 //export default Header;
+Header.prototype = {
+  title: PropTypes.string,
+  players: PropTypes.array
+}
+
+Header.defaultProps ={
+  title:'Scoreboard'
+}

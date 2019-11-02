@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 import {Header} from "./component/Header";
-import {Player} from "./component/Player";
+import {Players} from "./component/Players";
 import {AddPlayerForm} from "./component/AddPlayerForm";
 
 let maxId = 5;
@@ -70,10 +70,10 @@ class App extends React.Component {
   render() {
     return (
       <div className="scoreboard">
-        <Header title="My scoreboard" players={this.state.players} />{/*배열넘김*/}
+        <Header players={this.state.players} />{/*배열넘김*/}
 
         {/*Players List*/}
-        { this.state.players.map(item => <Player name={item.name}
+        { this.state.players.map(item => <Players name={item.name}
                                                  score={item.score}
                                                  key={item.id.toString()}
                                                  removePlayer={this.handleRemovePlayer}
