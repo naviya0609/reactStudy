@@ -3,12 +3,30 @@ import React from 'react';
 export class Stopwatch extends React.Component {//componentDidMount react가 가짐
   tickRef;
   state = {
-
+    isRunning : false,
+    timer : 0
   }
+
+  handleStopwatch (){
+   this.setState(prevState=> ({isRunning: !prevState.isRunning}))
+  }
+
+  handleReset(){
+    this.setState({timer:0})
+  }
+
   //setInterval callback function
-  tick(){
-
+  tick = () => {
+    // if(this.state.isRunning){
+    //   this.setState((prevState) =>{
+    //     return {timer : +prevState.timer }
+    //   })
+    // }
+    if(this.state.isRunning){
+      this.setState(prevState => ({timer : prevState.timer +1 }))
+    }
   }
+
 
   //DOM이 렌더링된 직후에 호출출
   //jquery, scrollbar ... third party, DOM, 네트워크와 관련된 메소드 초기화
@@ -25,9 +43,9 @@ export class Stopwatch extends React.Component {//componentDidMount react가 가
     return (
       <div className='stopwatch'>
         <h2>Stop Watch</h2>
-        <span className='stopwatch-time'>0</span>
-        <button>START</button>
-        <button>RESET</button>
+        <span className='stopwatch-time'>{this.state.timer}</span>
+        <button onClick={this.handleStopwatch.bind(this)}>{this.state.isRunning == true ? 'STOP' : 'START'}</button>
+        <button onClick={this.handleReset.bind(this)}>RESET</button>
       </div>
     );
   }
