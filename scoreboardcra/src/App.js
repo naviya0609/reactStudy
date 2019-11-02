@@ -4,6 +4,7 @@ import {Header} from "./component/Header";
 import {Player} from "./component/Player";
 import {AddPlayerForm} from "./component/AddPlayerForm";
 
+let maxId = 5;
 class App extends React.Component {
   state = {
     players: [
@@ -49,6 +50,20 @@ class App extends React.Component {
   handleAddPlayer(name){
     console.log('handleAddPlayer')
     console.log('name : ', name)
+    //setState, 원본배열 + 새로운배열
+    // this.setState(
+    //   (prevSate)=>{
+    //     const player = [...prevSate.players] 원본배열 + 새로운배열 기본
+    //   }
+    // )
+    this.setState(
+      prevSate=>{
+        const players = [...prevSate.players]
+        //unshift beforeappend
+        players.push({name:name, score:0, id:maxId++})
+        return {players}
+      }
+    )
   }
 
   render() {
