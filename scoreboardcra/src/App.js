@@ -56,10 +56,11 @@ class App extends React.Component {
     //     const player = [...prevSate.players] 원본배열 + 새로운배열 기본
     //   }
     // )
+    //
     this.setState(
       prevSate=>{
         const players = [...prevSate.players]
-        //unshift beforeappend
+        //unshift prepend / push append
         players.push({name:name, score:0, id:maxId++})
         return {players}
       }
