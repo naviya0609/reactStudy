@@ -42,6 +42,15 @@ class App extends React.Component {
         return { players };
     })
   }
+
+  //자식이 부모와 통신
+  //1. 부모에 빈 callback 함수 생성
+  //2. 받아서 배열에 추가
+  handleAddPlayer(name){
+    console.log('handleAddPlayer')
+    console.log('name : ', name)
+  }
+
   render() {
     return (
       <div className="scoreboard">
@@ -55,7 +64,7 @@ class App extends React.Component {
                                                  changeScore={this.handleChangeScore.bind(this)}
                                                  id={item.id} />)
         }
-        <AddPlayerForm/>
+        <AddPlayerForm addPlayer={this.handleAddPlayer.bind(this)}/>
       </div>
     );
   }

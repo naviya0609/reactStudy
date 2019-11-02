@@ -14,11 +14,17 @@ export class AddPlayerForm extends React.Component {
     this.setState({value:e.target.value})
   }
 
+  handleSubmit(e){
+    e.preventDefault(); //form submit 시 기본적으로 재로딩 되어 새로고침 깜박임 form 기본 이벤트 방지
+    this.props.addPlayer(this.state.value);
+  }
+
 //onchange js // onChange react method
+  //enter 클릭시 중복버튼과 submit 버튼 연쇄적으로 눌리는 현상이 일어남. onclick >> onSubmit으로 이벤트 버블링 방지 e.stopPropagation()
   render() {
     return (
-      <form className='form'>
-        <input className='input' type='text' placeholder="ENTER PLAYER'S NAME" value={this.state.value} onChange={this.handleValueChange}/>
+      <form className='form' onSubmit={this.handleSubmit.bind(this)}>
+        <input className='input' type='text' placeholder="ENTER PLAYER'S NAME" required value={this.state.value} onChange={this.handleValueChange}/>
         <input className='input' type='submit' value='ADD PLAYER' />
       </form>
     );
