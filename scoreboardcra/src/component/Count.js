@@ -2,6 +2,8 @@ import React from "react";
 import PropTypes from 'prop-types';
 import {changeScore} from "../redux/actions";
 import {connect} from "react-redux";
+import styles from '../pages/scoreboard/Scoreboard.module.css';
+import classNames from 'classnames';
 
 export class Counter extends React.Component {
   incDecScore = (delta) => {
@@ -10,10 +12,10 @@ export class Counter extends React.Component {
 
   render() {
     return (
-      <div className="counter">
-        <button className="counter-action decrement" onClick={()=>this.incDecScore(-1)}> - </button>
-        <span className="counter-score">{this.props.score}</span>
-        <button className="counter-action increment" onClick={()=>this.incDecScore(1)}> + </button>
+      <div className={styles.counter}>
+        <button className={classNames(styles['counter-action'], styles['decrement'])} onClick={()=>this.incDecScore(-1)}> - </button>
+        <span className={styles['counter-score']}>{this.props.score}</span>
+        <button className={classNames(styles['counter-action'], styles['increment'])} onClick={()=>this.incDecScore(1)}> + </button>
       </div>
     );
   }

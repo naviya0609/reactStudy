@@ -1,4 +1,5 @@
 import React from 'react';
+import styles from '../pages/scoreboard/Scoreboard.module.css';
 
 export const Stats = (props) => {
   var  totalPlayers = props.players.length; //계산
@@ -9,7 +10,7 @@ export const Stats = (props) => {
   props.players.forEach(player => totalScore += player.score )
 
   return (
-    <table className="stats">
+    <table className={styles.stats}>
       <tbody>
         <tr>
           <td>Players:</td>

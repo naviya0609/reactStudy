@@ -1,4 +1,5 @@
 import React from 'react';
+import styles from '../pages/scoreboard/Scoreboard.module.css';
 
 export class Stopwatch extends React.Component {//componentDidMount react가 가짐
   tickRef;
@@ -41,9 +42,9 @@ export class Stopwatch extends React.Component {//componentDidMount react가 가
 
   render() {
     return (
-      <div className='stopwatch'>
+      <div className={styles.stopwatch}>
         <h2>Stop Watch</h2>
-        <span className='stopwatch-time'>{this.state.timer}</span>
+        <span className={styles['stopwatch-time']}>{this.state.timer}</span>
         <button onClick={this.handleStopwatch.bind(this)}>{this.state.isRunning === true ? 'STOP' : 'START'}</button>
         <button onClick={this.handleReset.bind(this)}>RESET</button>
       </div>
