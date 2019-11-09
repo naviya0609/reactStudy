@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import './Heroes.scss';
+import api from '../../utils/api';
 
 export class Heroes extends React.Component {
 	state = {
@@ -14,7 +15,7 @@ export class Heroes extends React.Component {
 	//async 는 비동기가 되고, 반드시 await 와 같이 사용함.
 	//await 는 반드시 뒤에 promise가 오고 , promise가 올때까지 기다린다.
 	getHeroes = async () => {
-		let response = await axios.get('http://ec2-15-164-134-124.ap-northeast-2.compute.amazonaws.com:8000/api/user/heroes?start_index=0&page_size=10 ');
+		let response = await api.get('/api/user/heroes?start_index=0&page_size=10');
 		console.log(response);//response 비동기 PROMISE RETURN
 		this.setState({
 			heroes: response.data.data
