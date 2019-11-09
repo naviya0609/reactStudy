@@ -1,0 +1,7 @@
+//결합                                  //함수선언문
+import {combineReducers} from "redux";
+import {productReducer} from "./product";
+import {userReducer} from "./user";
+
+export const allReducer = combineReducers(
+  {products :productReducer, user: userReducer })
