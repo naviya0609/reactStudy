@@ -1,6 +1,7 @@
 import React from 'react';
-import {Counter} from "./Count";
+import Counter from "./Count";
 import PropTypes from 'prop-types';
+import {connect} from "react-redux";
 
 export class Players extends React.Component{
 
@@ -24,7 +25,7 @@ export class Players extends React.Component{
         <span className="player-name">
                 {this.props.name}
               </span>
-        <Counter score={this.props.score} id={this.props.id} changeScore={this.props.changeScore} />
+        <Counter score={this.props.score} id={this.props.id}/>
       </div>
     )
   }
@@ -35,6 +36,6 @@ Players.propsTypes = {
   name : PropTypes.string,
   id : PropTypes.number,
   score : PropTypes.number,
-  removePlayer : PropTypes.func,
-  changeScore : PropTypes.func,
+  removePlayer : PropTypes.func
 }
+

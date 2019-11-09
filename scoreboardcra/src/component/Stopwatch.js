@@ -44,7 +44,7 @@ export class Stopwatch extends React.Component {//componentDidMount react가 가
       <div className='stopwatch'>
         <h2>Stop Watch</h2>
         <span className='stopwatch-time'>{this.state.timer}</span>
-        <button onClick={this.handleStopwatch.bind(this)}>{this.state.isRunning == true ? 'STOP' : 'START'}</button>
+        <button onClick={this.handleStopwatch.bind(this)}>{this.state.isRunning === true ? 'STOP' : 'START'}</button>
         <button onClick={this.handleReset.bind(this)}>RESET</button>
       </div>
     );

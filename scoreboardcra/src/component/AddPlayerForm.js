@@ -1,8 +1,10 @@
 import React from 'react';
+import {connect} from "react-redux";
+import {addPlayer} from "../redux/actions";
 
 //state가 있으니까 class!
 //props function!
-export class AddPlayerForm extends React.Component {
+class AddPlayerForm extends React.Component {
   textInput = React.createRef();
 
   // state = {
@@ -49,3 +51,11 @@ export class AddPlayerForm extends React.Component {
     );
   }
 }
+
+//자식>부모
+//redux 라이브러리 함수
+const mapActionToProps = (dispatch) => ({
+  //왼쪽이 props, 오른쪽이 액션을 dispatch 하는 함수
+  addPlayer : (name) => dispatch(addPlayer(name))
+})
+export default connect(null, mapActionToProps)(AddPlayerForm);

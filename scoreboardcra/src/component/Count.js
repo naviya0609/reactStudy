@@ -1,5 +1,7 @@
 import React from "react";
 import PropTypes from 'prop-types';
+import {changeScore} from "../redux/actions";
+import {connect} from "react-redux";
 
 export class Counter extends React.Component {
   incDecScore = (delta) => {
@@ -23,3 +25,12 @@ Counter.propTypes = {
   score : PropTypes.number,
   changeScore : PropTypes.func,
 }
+
+//자식>부모
+//redux 라이브러리 함수
+const mapActionToProps = (dispatch) => ({
+  //왼쪽이 props, 오른쪽이 액션을 dispatch 하는 함수
+  changeScore : (id, delta) => dispatch(changeScore(id,delta))
+})
+
+export default connect(null, mapActionToProps)(Counter);

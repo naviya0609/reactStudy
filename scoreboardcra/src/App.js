@@ -2,18 +2,12 @@ import React from 'react';
 import './App.css';
 import {Header} from "./component/Header";
 import {Players} from "./component/Players";
-import {AddPlayerForm} from "./component/AddPlayerForm";
+import AddPlayerForm from "./component/AddPlayerForm";
+import {connect} from "react-redux";
+import {playerReducer} from "./redux/reducers/player";
 
-let maxId = 5;
 class App extends React.Component {
-  state = {
-    players: [
-      {name: 'LDK',   score: 10,  id: 1},
-      {name: 'HONG',  score: 20,  id: 2},
-      {name: 'KIM',   score: 30,  id: 3},
-      {name: 'PARK',  score: 40,  id: 4},
-    ]
-  };
+
   handleRemovePlayer = (id) => {
     this.setState(prevState => {
       return {
@@ -22,68 +16,38 @@ class App extends React.Component {
     })
   }
   //immutable 원본배열 건드리지 말고 변경후 새로운 배열로 리턴
-  handleChangeScore(id, delta){
-    //console.log("handleChangeScore", id, delta)
-    this.setState(prevState => {
-        //새로운배열로 copy 기존바구니에서 펼쳐서 새로운 배열 만듦.
-        /*const players = [ ...prevState.players ]
-        players.forEach(player => { //forEach는 리턴없이 해당 배열로 리턴.
-          if(id === player.id){
-            player.score += delta;
-          }
-        })
-        return {players}; //  {players : players};하나로 생략*/
-
-      const players = prevState.players.map(player=>{ //리턴되는 것을 새로운 배열로 만들어서 리턴.
-          if(id === player.id){         //player를 각각담아서 배열로 리턴
-            player.score += delta;
-          }
-          return player
-        })
-        return { players };
-    })
-  }
-
-  //자식이 부모와 통신
-  //1. 부모에 빈 callback 함수 생성
-  //2. 받아서 배열에 추가
-  handleAddPlayer(name){
-    console.log('handleAddPlayer')
-    console.log('name : ', name)
-    //setState, 원본배열 + 새로운배열
-    // this.setState(
-    //   (prevSate)=>{
-    //     const player = [...prevSate.players] 원본배열 + 새로운배열 기본
-    //   }
-    // )
-    //
-    this.setState(
-      prevSate=>{
-        const players = [...prevSate.players]
-        //unshift prepend / push append
-        players.push({name:name, score:0, id:maxId++})
-        return {players}
-      }
-    )
-  }
 
   render() {
     return (
       <div className="scoreboard">
-        <Header players={this.state.players} />{/*배열넘김*/}
+        <Header players={this.props.players} />{/*배열넘김*/}
 
         {/*Players List*/}
-        { this.state.players.map(item => <Players name={item.name}
+        { this.props.players.map(item => <Players name={item.name}
                                                  score={item.score}
                                                  key={item.id.toString()}
                                                  removePlayer={this.handleRemovePlayer}
-                                                 changeScore={this.handleChangeScore.bind(this)}
                                                  id={item.id} />)
         }
-        <AddPlayerForm addPlayer={this.handleAddPlayer.bind(this)}/>
+        <AddPlayerForm/>
       </div>
     );
   }
 }
 
-export default App;
+//부모>자식
+// subscribe: 스토어의 state를 props로 매핑하기
+const mapStateToProps = (state) => ({
+  // 왼쪽은 props, 오른쪽은 store의 state
+  players : state.playerReducer.players //state = json 안의 players key값
+});
+//this.state>> this.props.
+
+/*********************************************************************************/
+
+// Hoc: 기존 컴포넌트 인용으로 넣어서 새로운기능을 추가한 신규컴포넌트를 리턴하는 펑션,
+// 커링 function :입력파라미터를 한꺼번에 넣는게 아니라 차례대로 넣는 것.
+// 문법적으로는 파라메터를 차례대로 넣는 커링 펑션
+// 결과적으로 만드는것은 App을 입력으로해서 새로운 HoC 컴포넌트를 만든다.
+export default connect(mapStateToProps, null)(App);
+//export default App;
