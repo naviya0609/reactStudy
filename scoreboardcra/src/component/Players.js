@@ -4,14 +4,14 @@ import PropTypes from 'prop-types';
 import {connect} from "react-redux";
 import {removePlayer} from "../redux/actions";
 
-class Players extends React.Component{
+class Players extends React.PureComponent{
 
-  shouldComponentUpdate(nextProps, nextState, nextContext) {
-    // 기존 score와 nextProps의 score 가 다르면 true
-    // Component라면 shouldComponentUpdate 렌더링 제어 메서드를 직접 구현해야한다.
-    // true를 리턴하며 렌더링이 일어나고 false를 리턴하면 렌더링이 일어나지 않는다.
-    return this.props.score !== nextProps.score ? true : false;
-  }
+  // shouldComponentUpdate(nextProps, nextState, nextContext) {
+  //   // 기존 score와 nextProps의 score 가 다르면 true
+  //   // Component라면 shouldComponentUpdate 렌더링 제어 메서드를 직접 구현해야한다.
+  //   // true를 리턴하며 렌더링이 일어나고 false를 리턴하면 렌더링이 일어나지 않는다.
+  //   return this.props.score !== nextProps.score ? true : false;
+  // }
 
   render() {
     console.log(this.props.name,"is rendered")
@@ -24,9 +24,10 @@ class Players extends React.Component{
                 <button className="remove-player" onClick={() => this.props.removePlayer(this.props.id)}>x</button>
               </span>
         <span className="player-name">
-                {this.props.name}
+                {this.props.children}
+                {name}
               </span>
-        <Counter score={this.props.score} id={this.props.id}/>
+        <Counter score={score} id={id}/>
       </div>
     )
   }
@@ -36,8 +37,7 @@ class Players extends React.Component{
 Players.propsTypes = {
   name : PropTypes.string,
   id : PropTypes.number,
-  score : PropTypes.number,
-  removePlayer : PropTypes.func
+  score : PropTypes.number
 }
 
 

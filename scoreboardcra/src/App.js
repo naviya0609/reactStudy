@@ -5,8 +5,19 @@ import Players from "./component/Players";
 import AddPlayerForm from "./component/AddPlayerForm";
 import {connect} from "react-redux";
 import {playerReducer} from "./redux/reducers/player";
+import {CustomPlayer} from "./component/CustomPlayer";
 
 class App extends React.Component {
+  getHighScore(){
+    let highScore = 0;
+    this.props.players.forEach(player => {
+      if (player.score> highScore){
+        highScore = player.score;
+      }
+    })
+    return highScore > 0 ? highScore : null;
+  }
+
   render() {
     return (
       <div className="scoreboard">
@@ -15,7 +26,8 @@ class App extends React.Component {
         {/*Player's List*/}
         {
           this.props.players.map(player =>
-            <Players name={player.name} score={player.score} id={player.id} key={player.id} />)
+            <CustomPlayer name={player.name} score={player.score} id={player.id} key={player.id}
+            isHighScore = {this.getHighScore() === player.score}/>)
         }
         <AddPlayerForm></AddPlayerForm>
       </div>
