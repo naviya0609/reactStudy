@@ -2,8 +2,9 @@ import React from 'react';
 import Counter from "./Count";
 import PropTypes from 'prop-types';
 import {connect} from "react-redux";
+import {removePlayer} from "../redux/actions";
 
-export class Players extends React.Component{
+class Players extends React.Component{
 
   shouldComponentUpdate(nextProps, nextState, nextContext) {
     // 기존 score와 nextProps의 score 가 다르면 true
@@ -39,3 +40,12 @@ Players.propsTypes = {
   removePlayer : PropTypes.func
 }
 
+
+//자식>부모
+//redux 라이브러리 함수
+const mapActionToProps = (dispatch) => ({
+  //왼쪽이 props, 오른쪽이 액션을 dispatch 하는 함수
+  removePlayer : (id) => dispatch(removePlayer(id))
+})
+
+export default connect(null, mapActionToProps)(Players);

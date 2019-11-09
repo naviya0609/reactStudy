@@ -1,4 +1,4 @@
-import {ADD_PLAYER, CHANGE_SCORE} from "./actionTypes";
+import {ADD_PLAYER, CHANGE_SCORE, REMOVE_PLAYER} from "./actionTypes";
 
 let maxId = 4;
 const initialState = {
@@ -33,6 +33,10 @@ export const playerReducer = (state = initialState, action) =>{
       return {...state, players}
       break;
 
+    case REMOVE_PLAYER:
+      players = state.players.filter(player => player.id !== action.id)
+      return { ...state, players }
+      break;
   }//변형된 state 리턴
   return state;
 }

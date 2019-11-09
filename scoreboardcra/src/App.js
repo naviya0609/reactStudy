@@ -1,35 +1,23 @@
 import React from 'react';
 import './App.css';
 import {Header} from "./component/Header";
-import {Players} from "./component/Players";
+import Players from "./component/Players";
 import AddPlayerForm from "./component/AddPlayerForm";
 import {connect} from "react-redux";
 import {playerReducer} from "./redux/reducers/player";
 
 class App extends React.Component {
-
-  handleRemovePlayer = (id) => {
-    this.setState(prevState => {
-      return {
-        players: prevState.players.filter(item => item.id !== id)
-      }
-    })
-  }
-  //immutable 원본배열 건드리지 말고 변경후 새로운 배열로 리턴
-
   render() {
     return (
       <div className="scoreboard">
-        <Header players={this.props.players} />{/*배열넘김*/}
+        <Header players={this.props.players} />
 
-        {/*Players List*/}
-        { this.props.players.map(item => <Players name={item.name}
-                                                 score={item.score}
-                                                 key={item.id.toString()}
-                                                 removePlayer={this.handleRemovePlayer}
-                                                 id={item.id} />)
+        {/*Player's List*/}
+        {
+          this.props.players.map(player =>
+            <Players name={player.name} score={player.score} id={player.id} key={player.id} />)
         }
-        <AddPlayerForm/>
+        <AddPlayerForm></AddPlayerForm>
       </div>
     );
   }
